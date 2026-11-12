@@ -12,8 +12,8 @@ Leo Chogo	V-32.604.493	Apoyo en la parte B
 /////////////////////////////
 
 respecto al uso de IA:
-se realizó uso de Gemini para investigación y corroboración 
-tanto en la parte A como en la parte B
+se realizó uso de Gemini para investigación y corroboración en la parte A 
+en la parte B se realizó uso tanto de copilot como de Gemini para guia y corroboración 
 en la parte C se realizó uso de copilot como guia
 
 /////////////////////////////
