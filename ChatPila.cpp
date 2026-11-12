@@ -165,13 +165,15 @@ const PilaAcciones& ChatPila::getPilaRehacer() const
     return pilaRehacer;
 }
 
-std::size_t ChatPila::cantidadMensajes() const
+std::size_t ChatPila::cantidadMensajes() const //cantidad de mensajes en el chat
 {
+    //con size() aseguramos que retorne la cantidad total de los elementos en mensaje
     return mensajes.size();
 }
 
-const TextMessage* ChatPila::buscarMensaje(int id) const
+const TextMessage* ChatPila::buscarMensaje(int id) const //retorna apuntador a mensajes o nullptr + cons
 {
+    //creamos un bucle para recorrer la cantidad de mensajes por sus indices, si en el mensaje coincide el ID retorna el apuntador a mensajes o nulptr
     for (std::size_t i = 0; i < mensajes.size(); ++i) {
         if (mensajes[i].getId() == id) {
             return &mensajes[i];
@@ -180,8 +182,9 @@ const TextMessage* ChatPila::buscarMensaje(int id) const
     return nullptr;
 }
 
-TextMessage* ChatPila::buscarMensaje(int id)
+TextMessage* ChatPila::buscarMensaje(int id) //retorna apuntador a mensajes o nullptr
 {
+    //creamos un bucle para recorrer la cantidad de mensajes por sus indices, si en el mensaje coincide el ID retorna el apuntador a mensajes o nulptr
     for (std::size_t i = 0; i < mensajes.size(); ++i) {
         if (mensajes[i].getId() == id) {
             return &mensajes[i];
