@@ -167,20 +167,25 @@ const PilaAcciones& ChatPila::getPilaRehacer() const
 
 std::size_t ChatPila::cantidadMensajes() const
 {
-    // TODO: completar.
-    return 0;
+    return mensajes.size();
 }
 
 const TextMessage* ChatPila::buscarMensaje(int id) const
 {
-    // TODO: completar.
-    (void)id;
+    for (std::size_t i = 0; i < mensajes.size(); ++i) {
+        if (mensajes[i].getId() == id) {
+            return &mensajes[i];
+        }
+    }
     return nullptr;
 }
 
 TextMessage* ChatPila::buscarMensaje(int id)
 {
-    // TODO: completar.
-    (void)id;
+    for (std::size_t i = 0; i < mensajes.size(); ++i) {
+        if (mensajes[i].getId() == id) {
+            return &mensajes[i];
+        }
+    }
     return nullptr;
 }
