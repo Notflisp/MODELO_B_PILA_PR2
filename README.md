@@ -8,3 +8,13 @@ Salomé Rondón	V-30.619.124	Desarrollador en la parte B
 Raynuai Moran	V-32.979.355	Desarrollador en la parte A
 Angel Rivas	V-32.517.670	Apoyo en la parte A + Readme
 Leo Chogo	V-32.604.493	Apoyo en la parte B
+
+/////////////////////////////
+
+respecto al uso de IA:
+se realizó uso de Gemini para investigación y corroboración 
+tanto en la parte A como en la parte B
+en la parte C se realizó uso de copilot como guia
+
+/////////////////////////////
+
