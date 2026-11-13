@@ -23,24 +23,50 @@ ChatPila::ChatPila(int id, std::string nombre, std::vector<std::string> particip
 
 bool ChatPila::enviarMensaje(TextMessage mensaje)
 {
-    // TODO: completar.
-    (void)mensaje;
-    return false;
+    if (!isParticipant(mensaje.getSender()) ||
+        buscarMensaje(mensaje.getId()) != nullptr ||
+        mensaje.getStatus() != MessageStatus::Pending) {
+        return false;
+    }
+
+    mensajes.push_back(mensaje); //guarda el mensaje
+    pilaRehacer.limpiar(); //borrar la pila de acciones deshechas
+    pila.apilar(Accion(TipoAccion::Enviar, mensaje)); //registra el mensaje
+    return true;
 }
 
 bool ChatPila::editarMensaje(int id, const std::string& nuevoTexto)
 {
-    // TODO: completar.
-    (void)id;
-    (void)nuevoTexto;
-    return false;
+    TextMessage* msg = buscarMensaje(id);
+    if (msg == nullptr || nuevoTexto.empty()) {
+        return false;
+    }
+    std::string textoAnterior = msg->getContent();
+    msg->setContent(nuevoTexto);
+    pilaRehacer.limpiar();
+    pila.apilar(Accion(TipoAccion::Editar, *msg, textoAnterior));
+    return true;
 }
 
 bool ChatPila::eliminarMensaje(int id)
 {
-    // TODO: completar.
-    (void)id;
-    return false;
+    TextMessage* msg = buscarMensaje(id);
+    if (msg == nullptr) {
+        return false;
+    }
+
+    TextMessage mensajeEliminado(*msg);
+    mensajes.erase(
+        std::remove_if(mensajes.begin(), mensajes.end(),
+            [id](const TextMessage& mensaje)
+            {
+                return mensaje.getId() == id;
+            }),
+        mensajes.end());
+
+    pilaRehacer.limpiar();
+    pila.apilar(Accion(TipoAccion::Eliminar, mensajeEliminado));
+    return true;
 }
 
 bool ChatPila::deshacer()
