@@ -46,7 +46,6 @@ PilaAcciones::PilaAcciones(const PilaAcciones& otra)
 
 PilaAcciones& PilaAcciones::operator=(const PilaAcciones& otra)
 {
-    // TODO: completar.
     if(this != &otra)
     {
         limpiar();
@@ -77,7 +76,6 @@ PilaAcciones::PilaAcciones(PilaAcciones&& otra) noexcept
 
 PilaAcciones& PilaAcciones::operator=(PilaAcciones&& otra) noexcept
 {
-    // TODO: completar.
     if (this != &otra)
     {
         limpiar();
@@ -90,19 +88,16 @@ PilaAcciones& PilaAcciones::operator=(PilaAcciones&& otra) noexcept
     
 bool PilaAcciones::vacia() const
 {
-    // TODO: completar.
     return cima_ == nullptr;
 }
 
 std::size_t PilaAcciones::tamanio() const
 {
-    // TODO: completar.
     return cantidad;
 }
 
 bool PilaAcciones::apilar(const Accion& accion)
 {
-    // TODO: completar.
     auto nuevo = std::make_unique<Nodo>(accion);
     nuevo->siguiente = std::move(cima_);
     cima_ = std::move(nuevo);
@@ -112,7 +107,6 @@ bool PilaAcciones::apilar(const Accion& accion)
 
 bool PilaAcciones::desapilar()
 {
-    // TODO: completar.
     if (cima_ == nullptr)
     {
         return false;
@@ -125,7 +119,6 @@ bool PilaAcciones::desapilar()
 
 Accion* PilaAcciones::cima()
 {
-    // TODO: completar.
     if (cima_ == nullptr)
         {
             return nullptr;
@@ -135,7 +128,6 @@ Accion* PilaAcciones::cima()
 
 void PilaAcciones::limpiar()
 {
-    // TODO: completar.
     while (cima_ != nullptr)
     {
         desapilar();
@@ -144,7 +136,6 @@ void PilaAcciones::limpiar()
 
 std::vector<Accion> PilaAcciones::aVector() const
 {
-    // TODO: completar.
    std::vector<Accion> vec;
     Nodo* actual = cima_.get();
     while (actual != nullptr)
@@ -247,7 +238,6 @@ void PilaAcciones::invertir()
 
 bool PilaAcciones::guardarCSV(const std::string& ruta) const
 {
-    // TODO: completar.
     std::ofstream archivo(ruta);
     if (!archivo.is_open())
     {
@@ -267,7 +257,6 @@ bool PilaAcciones::guardarCSV(const std::string& ruta) const
 
 bool PilaAcciones::cargarCSV(const std::string& ruta)
 {
-    // TODO: completar.
     std::ifstream archivo(ruta);
     if (!archivo.is_open())
     {
