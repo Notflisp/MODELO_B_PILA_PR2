@@ -1,7 +1,7 @@
 #include "PilaAcciones.hpp"
 
 #include <utility>
-
+#include <fstream>
 // ====================================================================
 // PRACTICA EVALUADA 03 - MODELO B (PILA ENLAZADA)
 // Integrantes:
@@ -160,7 +160,7 @@ const Accion* PilaAcciones::buscarPorId(int id) const
     Nodo* actual = cima_.get();
     while (actual != nullptr)
     {
-        if (actual->dato.mensaje.getId() == id)
+        if (actual->dato.getMensaje().getId() == id)
         {
             return &(actual->dato);
         }
@@ -184,7 +184,7 @@ bool PilaAcciones::eliminarPorId(int id)
     
     for (const auto& acc : temp)
     {
-        if (acc.id == id)
+        if (acc.getMensaje().getId() == id)
         {
             encontrado = true;
         }
@@ -213,7 +213,7 @@ bool PilaAcciones::moverAlCima(int id)
     
     for (size_t i = 0; i < temp.size(); ++i)
     {
-        if (temp[i].getId() == id)
+        if (temp[i].getMensaje().getId() == id)
         {
             idxEncontrado = i;
             break;
@@ -257,7 +257,7 @@ bool PilaAcciones::guardarCSV(const std::string& ruta) const
     Nodo* actual = cima_.get();
     while (actual != nullptr)
     {
-        archivo << actual->dato.getId() << "\n";
+        archivo << actual->dato.toCSV() << "\n";
         actual = actual->siguiente.get();
     }
     
@@ -274,16 +274,28 @@ bool PilaAcciones::cargarCSV(const std::string& ruta)
         return false;
     }
     
-    limpiar();
-    std::string linea;
-    while (std::getline(archivo, linea))
-    {
-        if (linea.empty())
-        {
-            continue;
-        }
+limpiar();
+std::string linea;
+std::vector<Accion> temporal;
+
+while (std::getline(archivo, linea))
+{
+    if (linea.empty()) continue;
+    temporal.push_back(Accion::fromCSV(linea));
+}
+archivo.close();
+
+for (int i = temporal.size() - 1; i >= 0; --i) 
+{
+    apilar(temporal[i]);
+}
+
+return true;
+}
+
+const Accion* PilaAcciones::cima() const {
+    if (vacia()) {
+        return nullptr;
     }
-    
-    archivo.close();
-    return true;
+    return &(cima_->dato);
 }

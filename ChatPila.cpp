@@ -1,9 +1,9 @@
 #include "ChatPila.hpp"
 
 #include <utility>
-
+#include <algorithm>
 // ====================================================================
-// PRACTICA EVALUADA 03 - MODELO B (PILA ENLAZADA)
+// PRACTICA EVALUADA 03 - MODELO B (PILA ENLAZADA)D
 // Integrantes:
 //   1. Mathias Molina - C.I. V-32.598.208 - Rol: header y desarrollador en la parte C
 //   2. Miguel Andrade - C.I. V-31.905.358 - Rol: desarrollador en la parte B
